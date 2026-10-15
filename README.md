@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Video Search Engine
 
 A video search application designed to help users find relevant information inside video content.
@@ -67,3 +68,6 @@ Frontend URL: http://localhost:5173/
 Phase 0 — Foundation and local development setup.
 
 Upcoming work includes database integration, authentication, video ingestion, transcript generation, semantic search, and timestamped answers.
+=======
+# video-search-engine
+>>>>>>> origin/main
