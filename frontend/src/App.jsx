@@ -1,31 +1,16 @@
+import { Route, Routes } from "react-router-dom";
+import ProtectedRoute from "./auth/ProtectedRoute";
+import AuthPage from "./pages/AuthPage";
+import Library from "./pages/Library";
 
-import { useEffect, useState } from "react";
-
-const API_URL = "http://localhost:8000";
-
-function App() {
-  const [status, setStatus] = useState("Checking backend...");
-
-  useEffect(() => {
-    fetch(`${API_URL}/health`)
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Backend request failed");
-        }
-        return response.json();
-      })
-      .then((data) => setStatus(data.status))
-      .catch(() => setStatus("Backend unavailable"));
-  }, []);
-
+export default function App() {
   return (
-    <main style={{ padding: "32px", fontFamily: "Arial, sans-serif" }}>
-      <h1>Video Search Engine</h1>
-      <p>
-        Backend status: <strong>{status}</strong>
-      </p>
-    </main>
+    <Routes>
+      <Route path="/login" element={<AuthPage mode="login" />} />
+      <Route path="/register" element={<AuthPage mode="register" />} />
+      <Route element={<ProtectedRoute />}>
+        <Route path="/" element={<Library />} />
+      </Route>
+    </Routes>
   );
 }
-
-export default App;
